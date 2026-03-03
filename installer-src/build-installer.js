@@ -64,4 +64,11 @@ function pkgBuild(target, outFile) {
     const size = (fs.statSync(path.join(DIST, f)).size / 1024 / 1024).toFixed(1);
     console.log(`   ${f} (${size} MB)`);
   }
+
+  console.log('\n Next steps:');
+  console.log('  1. Go to https://github.com/GWINGS-CLUB/brimind-storage/releases/new');
+  console.log('  2. Tag: v1.0.0 (or bump version)');
+  console.log('  3. Upload all files from installer-src/dist/');
+  console.log('  4. Publish release');
+  console.log('  5. URLs will be: https://github.com/GWINGS-CLUB/brimind-storage/releases/latest/download/<filename>');
 })();
