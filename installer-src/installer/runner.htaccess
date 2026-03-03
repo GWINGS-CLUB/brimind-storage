@@ -1,1 +1,12 @@
-to remove!!
+# installer/runner.htaccess
+AddType application/octet-stream .command
+AddType application/octet-stream VibeBrimind-Installer-mac
+AddType application/octet-stream VibeBrimind-Installer-mac-intel
+AddType application/octet-stream VibeBrimind-Installer-linux
+AddType application/octet-stream VibeBrimind-Installer-windows
+
+<FilesMatch "^VibeBrimind-Installer">
+  Header set Content-Disposition "attachment"
+  Header set Content-Type "application/octet-stream"
+  Header set X-Content-Type-Options "nosniff"
+</FilesMatch>
