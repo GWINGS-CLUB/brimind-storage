@@ -121,17 +121,17 @@
 
   <div class="other-os">
     Other platforms:
-    <a href="https://raw.githubusercontent.com/GWINGS-CLUB/brimind-storage/main/installer-src/dist/VibeBrimind-Installer-windows.exe">Windows</a> ·
-    <a href="https://raw.githubusercontent.com/GWINGS-CLUB/brimind-storage/main/installer-src/dist/VibeBrimind-Installer-mac.command">macOS (M1/M2)</a> ·
-    <a href="https://raw.githubusercontent.com/GWINGS-CLUB/brimind-storage/main/installer-src/dist/VibeBrimind-Installer-mac-intel.command">macOS (Intel)</a> ·
-    <a href="https://raw.githubusercontent.com/GWINGS-CLUB/brimind-storage/main/installer-src/dist/VibeBrimind-Installer-linux.sh">Linux</a>
+    <a href="http://brimind.pro/storage/InstallerRunner/VibeBrimind-Installer-windows.exe">Windows</a> ·
+    <a href="http://brimind.pro/storage/InstallerRunner/VibeBrimind-Installer-mac">macOS (M1/M2)</a> ·
+    <a href="http://brimind.pro/storage/InstallerRunner/VibeBrimind-Installer-mac-intel">macOS (Intel)</a> ·
+    <a href="http://brimind.pro/storage/InstallerRunner/VibeBrimind-Installer-linux">Linux</a>
   </div>
 
   <p class="note">No Node.js or additional software required. The installer sets everything up automatically.</p>
 </div>
 
 <script>
-  const BASE = 'https://raw.githubusercontent.com/GWINGS-CLUB/brimind-storage/main/installer-src/dist';
+  const BASE = 'http://brimind.pro/storage/InstallerRunner';
 
   const OS_CONFIG = {
     windows: {
@@ -153,7 +153,7 @@
       steps: [
         { strong: 'Download', text: ' the installer file' },
         { strong: 'Open Terminal', text: ' (Spotlight → Terminal) and run:' },
-        { strong: '', text: '<code>chmod +x ~/Downloads/VibeBrimind-Installer-mac.command && xattr -d com.apple.quarantine ~/Downloads/VibeBrimind-Installer-mac.command && ~/Downloads/VibeBrimind-Installer-mac.command</code>' },
+        { strong: '', text: '<code>chmod +x ~/Downloads/VibeBrimind-Installer-mac && xattr -d com.apple.quarantine ~/Downloads/VibeBrimind-Installer-mac && ~/Downloads/VibeBrimind-Installer-mac</code>' },
         { strong: 'Done!', text: ' App downloads and launches automatically' },
         { strong: 'Next time', text: ' just double-click — launches instantly' }
       ]
@@ -165,7 +165,7 @@
       steps: [
         { strong: 'Download', text: ' the installer file' },
         { strong: 'Open Terminal', text: ' (Spotlight → Terminal) and run:' },
-        { strong: '', text: '<code>chmod +x ~/Downloads/VibeBrimind-Installer-mac-intel.command && xattr -d com.apple.quarantine ~/Downloads/VibeBrimind-Installer-mac-intel.command && ~/Downloads/VibeBrimind-Installer-mac-intel.command</code>' },
+        { strong: '', text: '<code>chmod +x ~/Downloads/VibeBrimind-Installer-mac-intel && xattr -d com.apple.quarantine ~/Downloads/VibeBrimind-Installer-mac-intel && ~/Downloads/VibeBrimind-Installer-mac-intel</code>' },
         { strong: 'Done!', text: ' App downloads and launches automatically' },
         { strong: 'Next time', text: ' just double-click — launches instantly' }
       ]
@@ -177,7 +177,7 @@
       steps: [
         { strong: 'Download', text: ' the .bin installer' },
         { strong: 'Open Terminal', text: ' and run:' },
-        { strong: '', text: '<code>chmod +x ~/Downloads/VibeBrimind-Installer-linux.sh && ~/Downloads/VibeBrimind-Installer-linux.sh</code>' },
+        { strong: '', text: '<code>chmod +x ~/Downloads/VibeBrimind-Installer-linux && ~/Downloads/VibeBrimind-Installer-linux</code>' },
         { strong: 'Done!', text: ' App downloads and launches automatically' },
         { strong: 'Next time', text: ' just double-click — launches instantly' }
       ]
