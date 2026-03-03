@@ -8,9 +8,9 @@ const DIST = path.join(ROOT, 'dist');
 
 const targets = [
   { target: 'node18-win-x64',      out: 'VibeBrimind-Installer-windows.exe' },
-  { target: 'node18-macos-arm64',  out: 'VibeBrimind-Installer-mac.command' },
-  { target: 'node18-macos-x64',    out: 'VibeBrimind-Installer-mac-intel.command' },
-  { target: 'node18-linux-x64',    out: 'VibeBrimind-Installer-linux.sh' }
+  { target: 'node18-macos-arm64',  out: 'VibeBrimind-Installer-mac' },
+  { target: 'node18-macos-x64',    out: 'VibeBrimind-Installer-mac-intel' },
+  { target: 'node18-linux-x64',    out: 'VibeBrimind-Installer-linux' }
 ];
 
 fs.mkdirSync(DIST, { recursive: true });
@@ -33,7 +33,13 @@ function pkgBuild(target, outFile) {
       if (code === 0) {
         // make executable on unix
         if (!outFile.endsWith('.exe')) {
-          try { execSync(`chmod +x "${outPath}"`, { stdio: 'pipe' }); } catch(_) {}
+          try {
+            execSync(`chmod +x "${outPath}"`, { stdio: 'pipe' });
+            // Set proper macOS executable attributes
+            if (outFile.includes('mac')) {
+              execSync(`xattr -d com.apple.quarantine "${outPath}" 2>/dev/null || true`, { stdio: 'pipe' });
+            }
+          } catch(_) {}
         }
         console.log(`  Done: dist/${outFile}`);
         resolve();

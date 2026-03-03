@@ -12,7 +12,8 @@
       "node18-linux-x64"
     ],
     "assets": [],
-    "outputPath": "dist"
+    "outputPath": "dist",
+    "compress": "GZip"
   },
   "scripts": {
     "build": "node build-installer.js"

@@ -121,17 +121,17 @@
 
   <div class="other-os">
     Other platforms:
-    <a href="https://github.com/GWINGS-CLUB/brimind-storage/releases/latest/download/VibeBrimind-Installer-windows.exe">Windows</a> ·
-    <a href="https://github.com/GWINGS-CLUB/brimind-storage/releases/latest/download/VibeBrimind-Installer-mac.command">macOS (M1/M2)</a> ·
-    <a href="https://github.com/GWINGS-CLUB/brimind-storage/releases/latest/download/VibeBrimind-Installer-mac-intel.command">macOS (Intel)</a> ·
-    <a href="https://github.com/GWINGS-CLUB/brimind-storage/releases/latest/download/VibeBrimind-Installer-linux.sh">Linux</a>
+    <a href="https://raw.githubusercontent.com/GWINGS-CLUB/brimind-storage/main/installer-src/dist/VibeBrimind-Installer-windows.exe">Windows</a> ·
+    <a href="https://raw.githubusercontent.com/GWINGS-CLUB/brimind-storage/main/installer-src/dist/VibeBrimind-Installer-mac.command">macOS (M1/M2)</a> ·
+    <a href="https://raw.githubusercontent.com/GWINGS-CLUB/brimind-storage/main/installer-src/dist/VibeBrimind-Installer-mac-intel.command">macOS (Intel)</a> ·
+    <a href="https://raw.githubusercontent.com/GWINGS-CLUB/brimind-storage/main/installer-src/dist/VibeBrimind-Installer-linux.sh">Linux</a>
   </div>
 
   <p class="note">No Node.js or additional software required. The installer sets everything up automatically.</p>
 </div>
 
 <script>
-  const BASE = 'https://github.com/GWINGS-CLUB/brimind-storage/releases/latest/download';
+  const BASE = 'https://raw.githubusercontent.com/GWINGS-CLUB/brimind-storage/main/installer-src/dist';
 
   const OS_CONFIG = {
     windows: {
@@ -148,7 +148,7 @@
     },
     mac: {
       label: 'macOS Apple Silicon detected',
-      file: 'VibeBrimind-Installer-mac.command',
+      file: 'VibeBrimind-Installer-mac',
       btnLabel: 'Download for macOS (Apple Silicon)',
       steps: [
         { strong: 'Download', text: ' the installer file' },
@@ -160,7 +160,7 @@
     },
     'mac-intel': {
       label: 'macOS Intel detected',
-      file: 'VibeBrimind-Installer-mac-intel.command',
+      file: 'VibeBrimind-Installer-mac-intel',
       btnLabel: 'Download for macOS (Intel)',      
       steps: [
         { strong: 'Download', text: ' the installer file' },
@@ -172,7 +172,7 @@
     },
     linux: {
       label: 'Linux detected',
-      file: 'VibeBrimind-Installer-linux.sh',
+      file: 'VibeBrimind-Installer-linux',
       btnLabel: 'Download for Linux',      
       steps: [
         { strong: 'Download', text: ' the .bin installer' },

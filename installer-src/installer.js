@@ -6,7 +6,7 @@ const path = require('path');
 const os = require('os');
 const { execSync, spawn } = require('child_process');
 
-const BASE_URL = 'https://brimind.pro/storage/InstallerRunner';
+const BASE_URL = 'https://brimind.pro/storage';
 const INSTALL_DIR = path.join(os.homedir(), 'VibeBrimind');
 const FLAG_FILE = path.join(INSTALL_DIR, '.installed');
 
