@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibe Brimind - Installer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0f;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 620px;
+      width: 100%;
+    }
+    .logo {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-radius: 20px;
+      margin: 0 auto 24px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; font-weight: 800;
+      box-shadow: 0 0 40px rgba(99,102,241,0.4);
+    }
+    h1 {
+      font-size: 2rem; font-weight: 700; margin-bottom: 8px;
+      background: linear-gradient(135deg, #fff, #a5b4fc);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .subtitle { color: #6b7280; font-size: 1rem; margin-bottom: 32px; }
+    .os-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(99,102,241,0.15);
+      border: 1px solid rgba(99,102,241,0.3);
+      border-radius: 100px; padding: 6px 16px;
+      font-size: 0.85rem; color: #a5b4fc; margin-bottom: 28px;
+    }
+    .os-dot {
+      width: 8px; height: 8px;
+      background: #6366f1; border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .main-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white; border: none; border-radius: 14px;
+      padding: 18px 40px; font-size: 1.1rem; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+      box-shadow: 0 8px 32px rgba(99,102,241,0.35);
+      text-decoration: none;
+    }
+    .main-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(99,102,241,0.5); }
+    .main-btn:active { transform: translateY(0); }
+    .main-btn svg { width: 22px; height: 22px; }
+    .instructions {
+      margin-top: 32px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 24px; text-align: left;
+    }
+    .instructions h3 {
+      font-size: 0.8rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: #6b7280; margin-bottom: 16px;
+    }
+    .step { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+    .step:last-child { margin-bottom: 0; }
+    .step-num {
+      width: 24px; height: 24px; min-width: 24px;
+      background: rgba(99,102,241,0.2); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; color: #a5b4fc;
+    }
+    .step p { font-size: 0.9rem; color: #9ca3af; line-height: 1.5; }
+    .step p strong { color: #e5e7eb; }
+    code {
+      background: #1f2937; padding: 2px 7px;
+      border-radius: 5px; color: #a5b4fc; font-size: 0.82em;
+    }
+    .other-os { margin-top: 24px; font-size: 0.8rem; color: #4b5563; }
+    .other-os a { color: #6366f1; text-decoration: none; margin: 0 6px; }
+    .other-os a:hover { text-decoration: underline; }
+    .note { margin-top: 12px; font-size: 0.78rem; color: #4b5563; line-height: 1.6; }
+    #unsupported { display:none; color:#f87171; font-size:0.9rem; margin-top:12px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="logo">V</div>
+  <h1>Vibe Brimind</h1>
+  <p class="subtitle">AI-Powered Workflow Launcher</p>
+
+  <div class="os-badge">
+    <div class="os-dot"></div>
+    <span id="os-label">Detecting your OS...</span>
+  </div>
+
+  <br>
+
+  <a id="download-btn" class="main-btn" href="#" onclick="handleDownload(); return false;">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+    </svg>
+    <span id="btn-label">Download Installer</span>
+  </a>
+
+  <div id="unsupported">⚠️ OS not detected. Please download manually below.</div>
+
+  <div class="instructions">
+    <h3>After downloading</h3>
+    <div id="steps"></div>
+  </div>
+
+  <div class="other-os">
+    Other platforms:
+    <a href="https://brimind.pro/storage/InstallerRunner/VibeBrimind-Installer-windows.exe">Windows</a> ·
+    <a href="https://brimind.pro/storage/InstallerRunner/VibeBrimind-Installer-mac.command">macOS (M1/M2)</a> ·
+    <a href="https://brimind.pro/storage/InstallerRunner/VibeBrimind-Installer-mac-intel.command">macOS (Intel)</a> ·
+    <a href="https://brimind.pro/storage/InstallerRunner/VibeBrimind-Installer-linux.sh">Linux</a>
+  </div>
+
+  <p class="note">No Node.js or additional software required. The installer sets everything up automatically.</p>
+</div>
+
+<script>
+  const BASE = 'https://brimind.pro/storage/InstallerRunner';
+
+  const OS_CONFIG = {
+    windows: {
+      label: 'Windows detected',
+      file: 'VibeBrimind-Installer-windows.exe',
+      btnLabel: 'Download for Windows (.exe)',
+      steps: [
+        { strong: 'Download', text: ' the .exe installer' },
+        { strong: 'Double-click', text: ' it to run' },
+        { strong: 'SmartScreen warning?', text: ' Click "More info" → "Run anyway"' },
+        { strong: 'Done!', text: ' App downloads and launches automatically' },
+        { strong: 'Next time', text: ' double-click again — launches instantly' }
+      ]
+    },
+    mac: {
+      label: 'macOS Apple Silicon detected',
+      file: 'VibeBrimind-Installer-mac.command',
+      btnLabel: 'Download for macOS (Apple Silicon)',
+      steps: [
+        { strong: 'Download', text: ' the installer file' },
+        { strong: 'Open Terminal', text: ' (Spotlight → Terminal) and run:' },
+        { strong: '', text: '<code>chmod +x ~/Downloads/VibeBrimind-Installer-mac.command && xattr -d com.apple.quarantine ~/Downloads/VibeBrimind-Installer-mac.command && ~/Downloads/VibeBrimind-Installer-mac.command</code>' },
+        { strong: 'Done!', text: ' App downloads and launches automatically' },
+        { strong: 'Next time', text: ' just double-click — launches instantly' }
+      ]
+    },
+    'mac-intel': {
+      label: 'macOS Intel detected',
+      file: 'VibeBrimind-Installer-mac-intel.command',
+      btnLabel: 'Download for macOS (Intel)',      
+      steps: [
+        { strong: 'Download', text: ' the installer file' },
+        { strong: 'Open Terminal', text: ' (Spotlight → Terminal) and run:' },
+        { strong: '', text: '<code>chmod +x ~/Downloads/VibeBrimind-Installer-mac-intel.command && xattr -d com.apple.quarantine ~/Downloads/VibeBrimind-Installer-mac-intel.command && ~/Downloads/VibeBrimind-Installer-mac-intel.command</code>' },
+        { strong: 'Done!', text: ' App downloads and launches automatically' },
+        { strong: 'Next time', text: ' just double-click — launches instantly' }
+      ]
+    },
+    linux: {
+      label: 'Linux detected',
+      file: 'VibeBrimind-Installer-linux.sh',
+      btnLabel: 'Download for Linux',      
+      steps: [
+        { strong: 'Download', text: ' the .bin installer' },
+        { strong: 'Open Terminal', text: ' and run:' },
+        { strong: '', text: '<code>chmod +x ~/Downloads/VibeBrimind-Installer-linux.sh && ~/Downloads/VibeBrimind-Installer-linux.sh</code>' },
+        { strong: 'Done!', text: ' App downloads and launches automatically' },
+        { strong: 'Next time', text: ' just double-click — launches instantly' }
+      ]
+    }
+  };
+
+  function detectOS() {
+    const ua = navigator.userAgent.toLowerCase();
+    const platform = (navigator.userAgentData?.platform || navigator.platform || '').toLowerCase();
+    if (ua.includes('win') || platform.includes('win')) return 'windows';
+    if (ua.includes('mac') || platform.includes('mac')) {
+      // detect Apple Silicon via canvas or userAgentData
+      try {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl');
+        const info = gl.getExtension('WEBGL_debug_renderer_info');
+        const renderer = gl.getParameter(info.UNMASKED_RENDERER_WEBGL).toLowerCase();
+        if (renderer.includes('apple m') || renderer.includes('apple gpu')) return 'mac';
+      } catch(_) {}
+      return 'mac-intel';
+    }
+    if (ua.includes('linux') || platform.includes('linux')) return 'linux';
+    return null;
+  }
+
+  function renderSteps(steps) {
+    return steps.map((s, i) => `
+      <div class="step">
+        <div class="step-num">${i + 1}</div>
+        <p><strong>${s.strong}</strong>${s.text}</p>
+      </div>
+    `).join('');
+  }
+
+  async function handleDownload() {
+    const os = detectOS();
+    if (!os) { document.getElementById('unsupported').style.display = 'block'; return; }
+    const config = OS_CONFIG[os];
+    const url = `${BASE}/${config.file}`;
+    try {
+      const res = await fetch(url);
+      const blob = await res.blob();
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = config.file;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(a.href);
+    } catch(e) {
+      window.location.href = url;
+    }
+  }
+
+  // Init
+  const os = detectOS();
+  const config = os ? OS_CONFIG[os] : null;
+  document.getElementById('os-label').textContent = config ? config.label : 'OS not detected';
+  document.getElementById('btn-label').textContent = config ? config.btnLabel : 'Download Installer';
+  document.getElementById('steps').innerHTML = renderSteps(config ? config.steps : OS_CONFIG.mac.steps);
+  if (!config) document.getElementById('unsupported').style.display = 'block';
+</script>
+</body>
+</html>

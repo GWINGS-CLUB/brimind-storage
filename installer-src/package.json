@@ -1,0 +1,23 @@
+{
+  "name": "vibe-brimind-installer",
+  "version": "1.0.0",
+  "description": "Vibe Brimind cross-platform installer",
+  "main": "installer.js",
+  "bin": "installer.js",
+  "pkg": {
+    "targets": [
+      "node18-win-x64",
+      "node18-macos-arm64",
+      "node18-macos-x64",
+      "node18-linux-x64"
+    ],
+    "assets": [],
+    "outputPath": "dist"
+  },
+  "scripts": {
+    "build": "node build-installer.js"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  }
+}

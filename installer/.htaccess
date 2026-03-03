@@ -1,0 +1,9 @@
+# Force binary download for all files in this folder
+AddType application/octet-stream .bin
+AddType application/octet-stream .exe
+AddType application/octet-stream .sh
+AddType application/octet-stream .command
+
+<FilesMatch ".*">
+  ForceType application/octet-stream
+</FilesMatch>
